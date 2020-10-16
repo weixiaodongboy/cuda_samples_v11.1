@@ -53,6 +53,12 @@ int main(int argc, char **argv)
     //three-dimensional blocks are configured.
     dim3 dimGrid(2, 2);
     dim3 dimBlock(2, 2, 2);
+    
+    printf("[%d, %d]:\t\tValue is:%d\n gridDim.x = %d  gridDim.y = %d  blockDim.x = %d  blockDim.y = %d\n", \
+        blockIdx.y * gridDim.x + blockIdx.x, \
+        threadIdx.z * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x, \
+        val, gridDim.x, gridDim.y, blockDim.x, blockDim.y);
+
     testKernel<<<dimGrid, dimBlock>>>(10);
     cudaDeviceSynchronize();
 
